@@ -13,7 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipPercentageControl;
 @property (weak, nonatomic) IBOutlet UIView *separatorBar;
-@property (weak, nonatomic) IBOutlet UIView *colorBox;
+@property (strong, nonatomic) IBOutlet UIView *backgroundView;
 
 @end
 
@@ -34,9 +34,6 @@
     // Set the layer's path
     maskLayer.path = cornersPath.CGPath;
     self.separatorBar.layer.mask = maskLayer;
-    
-    self.colorBox.layer.zPosition = 1;
-    
     self.billField.placeholder = @"enter bill amount";
 }
 
@@ -49,17 +46,38 @@
 - (IBAction)updateLabels:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     double doubleValue = [defaults doubleForKey:@"default_tip_percentage"];
+    int themeMode = [defaults integerForKey:@"theme"];
     
     double tipPercentages[] = {doubleValue, 0.15, 0.18, 0.2};
     double tipPercentage = tipPercentages[self.tipPercentageControl.selectedSegmentIndex];
     
-    double bill = [self.billField.text doubleValue];
+    double bill = 0.0;
+    bill = [self.billField.text doubleValue];
     double tip = bill * tipPercentage;
     double total = bill + tip;
     
     self.tipLabel.text = [NSString stringWithFormat:@"$%.2f", tip];
     self.totalLabel.text = [NSString stringWithFormat:@"$%.2f", total];
+    
+    UIColor *lightTheme = [UIColor colorWithRed:0.895 green:0.853 blue:1.000 alpha:1.0];
+    
+    UIColor *standardGray = [UIColor colorWithRed:0.840 green:0.802 blue:0.937 alpha:1.0];
+    
+    if (themeMode == 1) {
+        self.backgroundView.backgroundColor = UIColor.blackColor;
+        self.tipPercentageControl.backgroundColor = lightTheme;
+        self.tipLabel.textColor = lightTheme;
+        self.totalLabel.textColor = lightTheme;
+        self.billField.textColor = lightTheme;
+    } else {
+        self.backgroundView.backgroundColor = lightTheme;
+        self.tipPercentageControl.backgroundColor = standardGray;
+        self.tipLabel.textColor = UIColor.blackColor;
+        self.totalLabel.textColor = UIColor.blackColor;
+        self.billField.textColor = UIColor.blackColor;
+    }
 }
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 

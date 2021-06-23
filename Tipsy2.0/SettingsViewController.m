@@ -9,6 +9,11 @@
 
 @interface SettingsViewController ()
 @property (weak, nonatomic) IBOutlet UISegmentedControl *defaultPercentageControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *themeControl;
+@property (strong, nonatomic) IBOutlet UIView *settingsView;
+@property (weak, nonatomic) IBOutlet UILabel *settingsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *themeLabel;
 
 @end
 
@@ -25,9 +30,37 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setDouble:defaultPercentage forKey:@"default_tip_percentage"];
+//    [defaults setInteger:themeIndex forKey:@"theme"]; // temp
     [defaults synchronize];
 }
 
+- (IBAction)findTheme:(id)sender {
+    double themeIndex = self.themeControl.selectedSegmentIndex;
+    
+    UIColor *lightTheme = [UIColor colorWithRed:0.895 green:0.853 blue:1.000 alpha:1.0];
+    
+    UIColor *standardGray = [UIColor colorWithRed:0.840 green:0.802 blue:0.937 alpha:1.0];
+    
+    if (themeIndex == 1) {
+        self.settingsView.backgroundColor = UIColor.blackColor;
+        self.defaultPercentageControl.backgroundColor = lightTheme;
+        self.themeControl.backgroundColor = lightTheme;
+        self.settingsLabel.textColor = lightTheme;
+        self.tipLabel.textColor = lightTheme;
+        self.themeLabel.textColor = lightTheme;
+    } else {
+        self.settingsView.backgroundColor = lightTheme;
+        self.defaultPercentageControl.backgroundColor = standardGray;
+        self.themeControl.backgroundColor = standardGray;
+        self.settingsLabel.textColor = UIColor.blackColor;
+        self.tipLabel.textColor = UIColor.blackColor;
+        self.themeLabel.textColor = UIColor.blackColor;
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:themeIndex forKey:@"theme"];
+    [defaults synchronize];
+}
 
 /*
 #pragma mark - Navigation
