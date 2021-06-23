@@ -22,18 +22,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Make keyboard always visible
     [self.billField becomeFirstResponder];
 
     
     // Round the corners of the separator bar
     UIBezierPath *cornersPath = [UIBezierPath bezierPathWithRoundedRect:self.separatorBar.bounds  byRoundingCorners:(UIRectCornerTopLeft|UIRectCornerTopRight|UIRectCornerBottomLeft|UIRectCornerBottomRight) cornerRadii:CGSizeMake(20, 20)];
 
-    // New layer for the mask
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-
-    // Set the layer's path
     maskLayer.path = cornersPath.CGPath;
     self.separatorBar.layer.mask = maskLayer;
+    
+    // Add placeholder text so user knows where to input bill amount
     self.billField.placeholder = @"enter bill amount";
 }
 
@@ -44,31 +45,38 @@
 }
 
 - (IBAction)updateLabels:(id)sender {
+    // Access and save default tip and theme selection data
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     double doubleValue = [defaults doubleForKey:@"default_tip_percentage"];
-    int themeMode = [defaults integerForKey:@"theme"];
+    NSInteger themeMode = [defaults integerForKey:@"theme"];
     
+    // Get the selected tip percentage
     double tipPercentages[] = {doubleValue, 0.15, 0.18, 0.2};
     double tipPercentage = tipPercentages[self.tipPercentageControl.selectedSegmentIndex];
     
+    // Calculate tip and total
     double bill = 0.0;
     bill = [self.billField.text doubleValue];
     double tip = bill * tipPercentage;
     double total = bill + tip;
     
+    // Display tip and total
     self.tipLabel.text = [NSString stringWithFormat:@"$%.2f", tip];
     self.totalLabel.text = [NSString stringWithFormat:@"$%.2f", total];
     
+    // Change display theme based on user selection
     UIColor *lightTheme = [UIColor colorWithRed:0.895 green:0.853 blue:1.000 alpha:1.0];
-    
     UIColor *standardGray = [UIColor colorWithRed:0.840 green:0.802 blue:0.937 alpha:1.0];
     
+    // Dark mode
     if (themeMode == 1) {
         self.backgroundView.backgroundColor = UIColor.blackColor;
         self.tipPercentageControl.backgroundColor = lightTheme;
         self.tipLabel.textColor = lightTheme;
         self.totalLabel.textColor = lightTheme;
         self.billField.textColor = lightTheme;
+        
+    // Light mode
     } else {
         self.backgroundView.backgroundColor = lightTheme;
         self.tipPercentageControl.backgroundColor = standardGray;
