@@ -4,8 +4,7 @@ tipsy is a tip calculator application for iOS.
 
 Submitted by: Constance Horng
 
-Time spent: 6 hours spent in total
-
+Time spent: 8 hours spent in total
 
 ## User Stories
 
@@ -24,27 +23,25 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] Improved UI from initial version (font, color, placeholder text, etc.)
-
+- [x] Implemented light/dark mode option in Settings
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
-![](https://i.imgur.com/Uu2LioC.gif)
+![](https://i.imgur.com/zpm7xPo.gif)
+
 
 GIF created with [ezgif](ezgif.com/video-to-gif).
 
-
 ## Notes
 
-When implementing the improved UI, I was unable to add more detailed designs due to unfamiliarty with constraints. For example, I had designed a more aesthetic version with color blocks, but was unable to get it to show up on the simulator.
-
+When implementing the improved UI, I was unable to add more detailed designs due to unfamiliarty with constraints. For example, I had designed a more aesthetic version with color blocks, but was unable to get it to show up on the simulator. This is a feature that I hope to learn how to execute for future apps!
 
 ## Credits
 
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
-
 
 ## License
 
