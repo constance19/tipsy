@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipPercentageControl;
 @property (weak, nonatomic) IBOutlet UIView *separatorBar;
+@property (weak, nonatomic) IBOutlet UIView *colorBox;
 
 @end
 
@@ -31,6 +32,10 @@
     // Set the layer's path
     maskLayer.path = cornersPath.CGPath;
     self.separatorBar.layer.mask = maskLayer;
+    
+    self.colorBox.layer.zPosition = 1;
+    
+    self.billField.placeholder = @"enter bill amount";
 }
 
 - (IBAction)onTap:(id)sender {
@@ -40,7 +45,10 @@
 }
 
 - (IBAction)updateLabels:(id)sender {
-    double tipPercentages[] = {0.15, 0.18, 0.2};
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    double doubleValue = [defaults doubleForKey:@"default_tip_percentage"];
+    
+    double tipPercentages[] = {doubleValue, 0.15, 0.18, 0.2};
     double tipPercentage = tipPercentages[self.tipPercentageControl.selectedSegmentIndex];
     
     double bill = [self.billField.text doubleValue];
@@ -53,7 +61,6 @@
 
 /*
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].

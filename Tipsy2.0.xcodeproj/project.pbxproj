@@ -16,6 +16,7 @@
 		785551C42682A64300C810C2 /* Tipsy2_0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 785551C32682A64300C810C2 /* Tipsy2_0Tests.m */; };
 		785551CF2682A64300C810C2 /* Tipsy2_0UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 785551CE2682A64300C810C2 /* Tipsy2_0UITests.m */; };
 		785551DE2682A99600C810C2 /* TipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785551DD2682A99600C810C2 /* TipViewController.m */; };
+		785551E12682C6D900C810C2 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 785551E02682C6D900C810C2 /* SettingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		785551D02682A64300C810C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		785551DC2682A99600C810C2 /* TipViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TipViewController.h; sourceTree = "<group>"; };
 		785551DD2682A99600C810C2 /* TipViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TipViewController.m; sourceTree = "<group>"; };
+		785551DF2682C6D900C810C2 /* SettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		785551E02682C6D900C810C2 /* SettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +107,8 @@
 		785551A62682A64200C810C2 /* Tipsy2.0 */ = {
 			isa = PBXGroup;
 			children = (
+				785551DF2682C6D900C810C2 /* SettingsViewController.h */,
+				785551E02682C6D900C810C2 /* SettingsViewController.m */,
 				785551A72682A64200C810C2 /* AppDelegate.h */,
 				785551A82682A64200C810C2 /* AppDelegate.m */,
 				785551AA2682A64200C810C2 /* SceneDelegate.h */,
@@ -268,6 +273,7 @@
 			files = (
 				785551A92682A64200C810C2 /* AppDelegate.m in Sources */,
 				785551BA2682A64300C810C2 /* main.m in Sources */,
+				785551E12682C6D900C810C2 /* SettingsViewController.m in Sources */,
 				785551DE2682A99600C810C2 /* TipViewController.m in Sources */,
 				785551AC2682A64200C810C2 /* SceneDelegate.m in Sources */,
 			);
